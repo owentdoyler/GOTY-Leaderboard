@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Winter League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/flexbox_table.css">
+  <link rel="stylesheet" href="styles/style.css">
+  
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="scripts/script.js"></script>
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body ng-app="app" ng-controller="MyCtrl">
+
+    <h1 style="text-align: center">League Table</h1>
+    
+    <ul class="listTable">
+      <li class="listTableRow">
+        <ul class="listTableCellContainer tableRowBorder" id="headingRow">
+          <li class="listTableCell">
+            <span id="teamName">Team Name</span>
+          </li>
+          <li class="listTableCell"></li>
+          <li class="listTableCell"></li>
+          <li class="listTableCell"></li>
+          <li class="listTableCell">Score</li>
+        </ul>
+      </li>
+      
+      <li ng-repeat-start="team in teams" ng-click="teamRowClicked($index)" class="listTableRow">
+        <ul class="listTableCellContainer clickable hoverable tableRowBorder tableRowSpacing"  ng-class="{'oddFirstLayer': !even($index) != 0, 'evenFirstLayer': even($index)}">
+          <li class="listTableCell">
+            <span ng-if="teamShown == $index" class="fa fa-chevron-down " aria-hidden="true"></span>
+            <span ng-if="teamShown != $index" class="fa fa-chevron-right" aria-hidden="true"></span>
+            <span id="teamName">{{team.name}}</span>
+          </li>
+          <li class="listTableCell"></li>
+          <li class="listTableCell"></li>
+          <li class="listTableCell"></li>
+          <li class="listTableCell">{{team.score}}</li>
+        </ul>
+      </li>
+      
+      <li  ng-if="teamShown == $parent.$index" ng-repeat-start="week in team.weeks" ng-click="weekRowClicked($index)" class="listTableRow hideable">
+        
+        <ul class="listTableCellContainer noBorder tableRowBorder tableRowSpacing">
+          <li class="listTableCell"></li>
+          <li class="listTableCell clickable weekleft tableRowBorder" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
+            <span ng-if="weekShown == $index" class="fa fa-chevron-down " aria-hidden="true"></span>
+            <span ng-if="weekShown != $index" class="fa fa-chevron-right " aria-hidden="true"></span>
+            <span id="weekName">Week {{week.weekNumber}}</span>
+          </li>
+          <li class="listTableCell clickable weekmiddle tableRowBorder" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
+          <li class="listTableCell clickable weekmiddle tableRowBorder" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
+          <li class="listTableCell clickable weekmiddle tableRowBorder" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
+          <li class="listTableCell clickable weekmiddle tableRowBorder" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
+          <li class="listTableCell clickable weekmiddle tableRowBorder" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
+          <li class="listTableCell clickable weekright tableRowBorder" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">{{week.score}}</li>
+          <li class="listTableCell"></li>
+        </ul>
+        
+      </li>
+      
+      <li ng-repeat-end ng-if="weekShown == $index && teamShown == $parent.$index" class="listTableRow hideable">
+        
+        <ul class="listTableCellContainer individualScoreScontainer">
+          <li class="listTableCell"></li>
+          <li ng-repeat="player in week.individualScores" ng-if="weekShown == $parent.$index && teamShown == $parent.$parent.$parent.$index" class="listTableCell individualScore" id="individualScorestopRow">{{player.playerName}}</li>
+          <li class="listTableCell"></li>
+        </ul>
+        
+        <ul class="listTableCellContainer individualScoreScontainer">
+          <li class="listTableCell"></li>
+          <li ng-repeat="player in week.individualScores" ng-if="weekShown == $parent.$index && teamShown == $parent.$parent.$parent.$index" class="listTableCell individualScore">{{player.individualScore}}</li>
+          <li class="listTableCell"></li>
+        </ul>
+        
+      </li>
+      
+      <li ng-repeat-end></li>
+    </ul>
+
+</body>
+</html>

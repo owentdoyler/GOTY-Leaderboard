@@ -1,0 +1,19 @@
+ul{
+  list-style: none;
+  padding-left:0;
+}
+
+.listTableCellContainer{
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.listTableCell{
+  /* border: 1px solid black; */
+  flex: 1 1 100%;
+  text-align: center;
+}
+.listTableRow{
+  width: 100%;
+}
