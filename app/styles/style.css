@@ -1,19 +1,63 @@
 /* ------------------------------------- Main Styles -------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
+@import url('https://fonts.googleapis.com/css?family=Bilbo');
+
 body{
-  /*background-image: url("http://www.luttrellstowncastle.com/files/hotel/hotel-a/Golf-Gallery-004.jpg");
+  background-image: url("../assets/5.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;*/
-  
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
 }
+
+
 
 .listTable{
-  margin: auto;
-  width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	width: 700px;
 }
 
+#team-name-cell{
+	text-align: left;
+	flex: 7;
+}
+
+#icon-cell{
+	font-size: 15px;
+	flex: 0.5;
+}
+
+#L-logo{
+	flex: 2;
+}
+
+#number{
+	color: #ceb777;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	flex: 0.5;
+}
+
+#title{
+margin: auto;
+	flex: 6;
+}
+
+#title-text{
+	margin: 0px;
+	padding: 0px;
+	font-size: 50px;
+	font-family: 'Bilbo', cursive;
+}
 
 #teamName{
+	color: white;
   padding-left: 10px;
+}
+
+#score{
+	color: white;
 }
 
 #weekName{
@@ -32,14 +76,35 @@ body{
   border: 2px solid #0790f6;
 }
 
+.secondLayerHover{
+  background-color: red;
+}
+
+.secondLayerHover.secondLayerLeft{
+  box-shadow: 1px 1px 3px #0790f6;
+  border: 2px solid #0790f6;
+}
+
+.secondLayerHover.secondLayerMiddle{
+  box-shadow: 1px 1px 3px #0790f6;
+  border: 2px solid #0790f6;
+}
+
+.secondLayerHover.secondLayerLeft{
+  box-shadow: 1px 1px 3px #0790f6;
+  border: 2px solid #0790f6;
+}
 /* ------------------------------------- Borders and Row spacing-------------------------------------------------------- */
 
 
 .tableRowBorder{
-  border-radius: 5px;
-  border: 2px solid ;
-  padding-top: 5px;
-  padding-bottom: 5px;
+	border-radius: 5px; 
+	border: 2px solid ;
+}
+
+.listTableCell{
+	padding-top: 5px;
+	padding-bottom: 5px;	
 }
  
  .individualScore{
@@ -47,6 +112,7 @@ body{
 }
 
 .weekleft{
+	padding-left: 5px;
   border-radius: 5px 0px 0px 5px;
   border-right: none;
 }
@@ -74,20 +140,43 @@ body{
 /* ------------------------------------- Row Colors-------------------------------------------------------- */
 
 .evenFirstLayer{
-  background-color: #00e500;
+  background-color: rgba(14, 55, 23, 0.9);
+}
+
+.oddFirstLayer{
+	background-color: rgba(73, 128, 61, 0.9);
 }
 
 .evenSecondLayer{
-  background-color: grey;
+	background-color: rgba(73, 128, 61, 0.9);
+}
+
+.oddSecondLayer{
+	background-color: rgba(14, 55, 23, 0.9);
 }
 
 #individualScorestopRow{
   background-color: #ffb2b2;
 }
 
-#headingRow{
-  border-color: black;
-  font-size: 20px;
-  color: white;
-  background-color: #002600;
+#headingRow1{
+  border-radius: 5px 5px 0px 0px;
+  border-bottom: 0px;
+	background-color: #002600;
+}
+
+#headingRow2{
+	border-radius: 0px 0px 5px 5px;
+	border-top: 0px;
+	border-color: black;
+	font-size: 20px;
+	background-color: #002600;
+}
+
+.main-color{
+	color: #ceb777;
+}
+
+.secondRowSpacing{
+	padding: 0px;
 }
