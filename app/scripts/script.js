@@ -6,31 +6,10 @@ app.controller("MyCtrl", function($scope){
   $scope.test = "world";
   $scope.teams = 
     [
-      {name: "Team 1", score: "270", weeks:[
-        {weekNumber: "1", score: 90, individualScores:[
-              {playerName: "Alan", individualScore: "20"},
-              {playerName: "Bob", individualScore: "30"},
-              {playerName: "Jim", individualScore: "27"},
-              {playerName: "Tony", individualScore: "30"},
-              {playerName: "Owen", individualScore: "28"},
-              {playerName: "John", individualScore: "30"}
-        ]},
-        {weekNumber: "2", score: 90, individualScores:[
-              {playerName: "Alan", individualScore: "20"},
-              {playerName: "Bob", individualScore: "30"},
-              {playerName: "Jim", individualScore: "27"},
-              {playerName: "Tony", individualScore: "30"},
-              {playerName: "Owen", individualScore: "28"},
-              {playerName: "John", individualScore: "30"}
-        ]},
-        {weekNumber: "3", score: 90, individualScores:[
-              {playerName: "Alan", individualScore: "20"},
-              {playerName: "Bob", individualScore: "30"},
-              {playerName: "Jim", individualScore: "27"},
-              {playerName: "Tony", individualScore: "30"},
-              {playerName: "Owen", individualScore: "28"},
-              {playerName: "John", individualScore: "30"}
-        ]}
+      {name: "Owen Doyle", score: "270", weeks:[
+        {weekNumber: "President's Prize", score: 90},
+        {weekNumber: "September Medal", score: 90},
+        {weekNumber: "3", score: 90}
       ]},
       
       {name: "Team 2", score: "240", weeks:[

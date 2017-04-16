@@ -10,6 +10,7 @@ ul{
 }
 
 .listTableCell{
+  /*border: 1px solid red;*/
 	flex: 2;
 	text-align: center;
 }

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/animations.css">
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/flexbox_table.css">
-  
+  <link rel="stylesheet" href="styles/media-query.css">
   
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
@@ -21,33 +21,34 @@
     
     <ul class="listTable">
       <li class="listTableRow">
-		<ul class="listTableCellContainer tableRowBorder" id="headingRow1">
-			<li class="listTableCell" id="L-logo"><img src="assets/L-xs.png"></li>
-			<li class="listTableCell main-color" id="title"><h1 style="text-align: center; ;" id="title-text">Golfer of the Year</h1></li>
-			<li class="listTableCell" id="L-logo"></li>
-		</ul>
+        <ul class="listTableCellContainer tableRowBorder" id="headingRow1">
+          <li class="listTableCell" id="L-logo"><img src="assets/L-xs.png"></li>
+          <li class="listTableCell main-color" id="title"><h1 style="text-align: center; ;" id="title-text">Golfer of the Year</h1></li>
+          <li class="listTableCell" id="L-logo"></li>
+        </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow2">
           <li class="listTableCell">
           </li>
           <li class="listTableCell"></li>
           <li class="listTableCell"></li>
           <li class="listTableCell"></li>
-          <li class="listTableCell main-color">Score</li>
+          <li class="listTableCell main-color" id="score">Score</li>
+          <li class="listTableCell main-color" id="played">Played</li>
         </ul>
-		
       </li>
       
       <li ng-repeat-start="team in teams" ng-click="teamRowClicked($index)" class="listTableRow">
         <ul class="listTableCellContainer clickable hoverable tableRowBorder tableRowSpacing"  ng-class="{'oddFirstLayer': !even($index) != 0, 'evenFirstLayer': even($index)}">
           <li class="listTableCell" id="icon-cell">
-			<span ng-if="teamShown == $index" class="fa fa-chevron-down main-color" aria-hidden="true"></span>
+			      <span ng-if="teamShown == $index" class="fa fa-chevron-down main-color" aria-hidden="true"></span>
             <span ng-if="teamShown != $index" class="fa fa-chevron-right main-color" aria-hidden="true"></span>
-		  </li>
-		  <li  class="listTableCell" id="number">{{$index + 1}}</li>
-		  <li class="listTableCell" id="team-name-cell">	
+		      </li>
+		      <li  class="listTableCell" id="number">{{$index + 1}}</li>
+		      <li class="listTableCell" id="team-name-cell">	
             <span id="teamName">{{team.name}}</span>
           </li>
-          <li id="score" class="listTableCell">{{team.score}}</li>
+          <li id="score" class="listTableCell white score-cell">{{team.score}}</li>
+          <li id="played" class="listTableCell white">2</li>
         </ul>
       </li>
       
@@ -55,15 +56,17 @@
         
         <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing">
           <li class="listTableCell"></li>
-          <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
-            <span id="weekName">Week {{week.weekNumber}}</span>
+          <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
+            <span class="white" >{{week.weekNumber}}</span>
           </li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-          <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">{{week.score}}</li>
+          <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">
+            <span class="white">{{week.score}}</span>
+          </li>
           <li class="listTableCell"></li>
         </ul>
         
