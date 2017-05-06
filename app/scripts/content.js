@@ -2,7 +2,7 @@
 var app = angular.module("app", ['ngAnimate']);
 
 app.controller("MyCtrl", function($scope, $http){
-	$http.get("../queryTest.php").then(
+	$http.get("scripts/php/scores.php").then(
 		function(response){
 			$scope.teams = response.data;
 		}
