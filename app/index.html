@@ -13,7 +13,7 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="scripts/script.js"></script>
+  <script src="scripts/content.js"></script>
   <script src="scripts/jQuery_functions.js"></script>
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
@@ -27,11 +27,13 @@
           <li class="listTableCell" id="L-logo"></li>
         </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow2">
-          <li class="listTableCell">
+          <li class="listTableCell" id="label-spacer">
+              <span id="next-event-container">The next Golfer of the Year Event is the May Medal on June 12th The next Golfer of the Year Event is the May Medal on June 12thThe next Golfer of the Year Event is the May Medal on June 12th</span>
+          </li>  
+        </ul>
+        <ul class="listTableCellContainer tableRowBorder" id="headingRow3">
+          <li class="listTableCell" id="label-spacer">
           </li>
-          <li class="listTableCell"></li>
-          <li class="listTableCell"></li>
-          <li class="listTableCell"></li>
           <li class="listTableCell main-color" id="score">Score</li>
           <li class="listTableCell main-color" id="played">Played</li>
         </ul>
@@ -48,7 +50,7 @@
             <span id="teamName">{{team.name}}</span>
           </li>
           <li id="score" class="listTableCell white score-cell">{{team.score}}</li>
-          <li id="played" class="listTableCell white">2</li>
+          <li id="played" class="listTableCell white">{{team.weeks.length}}</li>
         </ul>
       </li>
       
