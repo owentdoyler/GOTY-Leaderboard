@@ -2,10 +2,18 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
 @import url('https://fonts.googleapis.com/css?family=Bilbo');
 
+html{
+	background: url("../assets/backgrounds/1.jpg") center fixed;
+	background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: 3s;
+}
+
 body{
-  background: url("../assets/5.jpg");
+  /*background: url("../assets/7.jpg");*/
   background-repeat: no-repeat;
   background-attachment: fixed;
+  transition: 3s;
   font-family: 'Ubuntu', sans-serif;
 }
 
