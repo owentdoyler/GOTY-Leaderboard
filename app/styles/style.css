@@ -21,7 +21,7 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
-	width: 700px;
+	width: 60%;
 }
 
 #team-name-cell{
@@ -91,6 +91,10 @@ margin: auto;
 	/*border: 1px solid #ceb777;*/
 	/*background-color: rgba(255, 178, 178, 0.5);*/
 	color: #ceb777;
+}
+
+#next-event-container a{
+	color: #0790f6;
 }
 
 #label-spacer{
