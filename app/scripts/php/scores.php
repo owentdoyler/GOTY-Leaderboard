@@ -25,6 +25,8 @@
 		if($response){
 			while($scoreData = mysqli_fetch_array($response)){
 				$score = new Score();
+				$score->position = $scoreData['position'];
+				$score->playerName = $scoreData['playerName'];
 				$score->competitionNumber = $scoreData['compNum'];
 				$score->competitionName = $scoreData['compName'];
 				$score->ompetitionCss = $scoreData['css'];
