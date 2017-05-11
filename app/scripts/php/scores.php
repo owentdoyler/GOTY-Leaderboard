@@ -1,7 +1,8 @@
 <?php
 	require("connect.php");
-	require("score.php");
+	// require("score.php");
 	require("player.php");
+	require("score_utils.php");
 	
 	$players_query = "SELECT playerName FROM scores GROUP BY playerName";
 	$players_query_response = @mysqli_query($database, $players_query);
@@ -21,21 +22,7 @@
 		$player = new Player();
 		$query = getPlayerScoreQuery($playerName);
 		$response = @mysqli_query($database, $query);
-		$scoreList = array();
-		if($response){
-			while($scoreData = mysqli_fetch_array($response)){
-				$score = new Score();
-				$score->position = $scoreData['position'];
-				$score->playerName = $scoreData['playerName'];
-				$score->competitionNumber = $scoreData['compNum'];
-				$score->competitionName = $scoreData['compName'];
-				$score->ompetitionCss = $scoreData['css'];
-				$score->noriginalNetScore = $scoreData['score'];
-				$score->gotyScore = $scoreData['gotyScore'];
-				array_push($scoreList, $score);
-			}
-		}
-		
+		$scoreList = group_scores($response);
 		//sort scores array so that the top five scores are first 
 		usort($scoreList, function($a, $b){
 			if($a->gotyScore < $b->gotyScore) return -1;
