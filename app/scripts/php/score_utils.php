@@ -11,12 +11,21 @@
                 $score->playerName = $scoreData['playerName'];
                 $score->competitionNumber = $scoreData['compNum'];
                 $score->competitionName = $scoreData['compName'];
-                $score->ompetitionCss = $scoreData['css'];
-                $score->noriginalNetScore = $scoreData['score'];
+                $score->competitionCss = $scoreData['css'];
+                $score->originalNetScore = $scoreData['score'];
                 $score->gotyScore = $scoreData['gotyScore'];
                 array_push($scoreList, $score);
             }
         }
         return $scoreList;
     }
+
+    function getScoresByCompetitionQuery($compNumber){
+	return"SELECT * FROM scores where compNum='" . $compNumber . "'";
+	}
+
+    
+	function getScoresByPlayerQuery($name){
+		return "SELECT * FROM scores WHERE playerName='" . $name ."'";
+	}
 ?>

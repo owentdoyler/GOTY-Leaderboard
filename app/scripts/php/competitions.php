@@ -1,5 +1,7 @@
 <?php
     require("connect.php");
+	require("competition.php");
+	require("score_utils.php");
 
     $competitions_query = "SELECT * FROM competitions GROUP BY compNum";
     $competitions_query_response = @mysqli_query($database, $competitions_query);
@@ -8,7 +10,86 @@
 	
 	if($competitions_query_response){
 		while($row = mysqli_fetch_array($competitions_query_response)){
-			array_push($competitions, $row['compName']);
+			array_push($competitions, $row['compNum']);
 		}
 	}
+
+	$competitionsList = array();
+
+	foreach($competitions as $competitionNumber){
+		$query = getScoresByCompetitionQuery($competitionNumber);
+		$response = @mysqli_query($database, $query);
+		$scoreList = group_scores($response);
+		//sort scores array so that the top five scores are first
+
+		usort($scoreList, function($a, $b){
+			if($a->position < $b->position) return -1;
+			elseif ($a->position > $b->position) return 1;
+			else return 0;
+		});
+		$compDetailsQuery = "SELECT * FROM competitions WHERE compNum='" . $competitionNumber . "';";
+		$compDetails_query_response = @mysqli_query($database, $compDetailsQuery);
+		if($compDetails_query_response){
+			$data = mysqli_fetch_array($compDetails_query_response);
+			$comp = new Competition();
+			$comp->compNum = $competitionNumber;
+			$comp->compName = $data["compName"];
+			$comp->date = $data["compDate"];
+			$comp->setResults($scoreList);
+			array_push($competitionsList, $comp);
+		}
+	}
+	usort($competitionsList, function($a, $b){
+		if($a->compNum < $b->compNum) return -1;
+		elseif ($a->compNum > $b->compNum) return 1;
+		else return 0;
+	});
+
+	$compsJson = array();
+	$firstElement = '"compName"';
+	$secondElement = '"compDate"';
+	$thirdElement = '"compWinner"';
+	$fourthElement = '"css"';
+	$fifthElement = '"results"';
+	$firstSubElement = '"position"';
+	$secondSubElement = '"name"';
+	$thirdSubElement = '"score"';
+	$fourthSubElement = '"gotyScore"';
+
+	foreach($competitionsList as $competition){
+		$winner = " - ";
+		$css = " - ";
+		if(count($competition->results) > 0){
+			$tmp = array_values($competition->results);
+			$first = $tmp[0];
+			$winner = $first->playerName;
+			$css = $first->competitionCss;	
+		}
+
+		$compJson = '{' . $firstElement. ':"' . $competition->compName . '",';
+		$compJson .= $secondElement . ':"' . $competition->date . '",';
+		$compJson .= $thirdElement . ':"' . $winner . '",';
+		$compJson .= $fourthElement . ':"' . $css . '",';
+		$compJson .= $fifthElement . ':[';
+		if(count($competition->results) > 0){
+			foreach($competition->results as $score){
+				$compJson .= '{' . $firstSubElement .':"' . $score->position . '",';
+				$compJson .=  $secondSubElement .':"' . $score->playerName . '",';
+				$compJson .=  $thirdSubElement .':"' . $score->originalNetScore . '",';
+				$compJson .=  $fourthSubElement .':"' . $score->gotyScore . '"},';
+			}
+			$compJson = substr($compJson, 0, -1);
+		}
+		$compJson .= ']}';
+		array_push($compsJson, $compJson);
+	}
+	$json = '[';
+	foreach($compsJson as $compJson){
+		$json .= $compJson . ',';
+	}
+	$json = substr($json, 0, -1);
+	$json .= ']';
+
+	echo $json;
+
 ?>

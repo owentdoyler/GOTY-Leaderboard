@@ -1,6 +1,5 @@
 <?php
 	require("connect.php");
-	// require("score.php");
 	require("player.php");
 	require("score_utils.php");
 	
@@ -19,8 +18,7 @@
 	$playersList = array();
 	
 	foreach ($players as $playerName){
-		$player = new Player();
-		$query = getPlayerScoreQuery($playerName);
+		$query = getScoresByPlayerQuery($playerName);
 		$response = @mysqli_query($database, $query);
 		$scoreList = group_scores($response);
 		//sort scores array so that the top five scores are first 
@@ -42,6 +40,7 @@
 		}
 		
 		//set up player object and add to list
+		$player = new Player();
 		$player->name = $playerName;
 		$player->setScores($scoreList);
 		$player->overallScore = $overallScore;
@@ -90,7 +89,4 @@
 		return $total;
 	}	
 	
-	function getPlayerScoreQuery($name){
-		return "SELECT * FROM scores WHERE playerName='" . $name ."'";
-	}
 ?>
