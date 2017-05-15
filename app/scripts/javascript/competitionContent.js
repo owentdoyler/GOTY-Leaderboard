@@ -1,10 +1,10 @@
 // Code goes here
-var app = angular.module("app", ['ngAnimate']);
+var schedule = angular.module("schedule", ['ngAnimate']);
 
-app.controller("MyCtrl", function($scope, $http){
+schedule.controller("ScheduleCtrl", function($scope, $http){
 	$http.get("scripts/php/competitions.php").then(
 		function(response){
-			$scope.competition = response.data;
+			$scope.competitions = response.data;
 		}
 	);
 	
