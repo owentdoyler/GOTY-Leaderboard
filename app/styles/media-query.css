@@ -2,4 +2,16 @@
     .listTable {
         width: 100%;
     }
+
+    #played{
+        flex: 3.5;
+    }
+
+    #score{
+        flex: 2;
+    }
+
+    .tableFont{
+	    font-size: 12px;
+    }
 }

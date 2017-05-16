@@ -45,7 +45,7 @@
       </li>
       
       <li ng-repeat-start="comp in competitions" ng-click="teamRowClicked($index)" class="listTableRow">
-        <ul class="listTableCellContainer clickable hoverable tableRowBorder tableRowSpacing"  ng-class="{'oddFirstLayer': !even($index) != 0, 'evenFirstLayer': even($index)}">
+        <ul class="listTableCellContainer clickable hoverable tableRowBorder tableRowSpacing tableFont"  ng-class="{'oddFirstLayer': !even($index) != 0, 'evenFirstLayer': even($index)}">
           <li class="listTableCell" id="icon-cell">
 			      <span ng-if="teamShown == $index" class="fa fa-chevron-down main-color" aria-hidden="true"></span>
             <span ng-if="teamShown != $index" class="fa fa-chevron-right main-color" aria-hidden="true"></span>
@@ -60,14 +60,14 @@
       </li>
       
       <li  ng-if="teamShown == $parent.$index" ng-repeat-start="result in comp.results" ng-click="weekRowClicked($index)" class="listTableRow hideable">
-        <ul ng-if="$index == 0" class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing">
+        <ul ng-if="$index == 0" class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
             <li class="listTableCell"></li>
             <li class="listTableCell listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
             <li class="listTableCell listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">{{comp.css}}</li>
             <li class="listTableCell listTableCell weekright tableRowBorder secondLayer secondLayerRight"ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
             <li class="listTableCell"></li>
         </ul>
-        <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing">
+        <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
           <li class="listTableCell"></li>
           <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
             <span class="white" >{{result.position}}</span>

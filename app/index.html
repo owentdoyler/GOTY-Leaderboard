@@ -45,7 +45,7 @@
       </li>
       
       <li ng-repeat-start="team in teams" ng-click="teamRowClicked($index)" class="listTableRow">
-        <ul class="listTableCellContainer clickable hoverable tableRowBorder tableRowSpacing"  ng-class="{'oddFirstLayer': !even($index) != 0, 'evenFirstLayer': even($index)}">
+        <ul class="listTableCellContainer clickable hoverable tableRowBorder tableRowSpacing tableFont"  ng-class="{'oddFirstLayer': !even($index) != 0, 'evenFirstLayer': even($index)}">
           <li class="listTableCell" id="icon-cell">
 			      <span ng-if="teamShown == $index" class="fa fa-chevron-down main-color" aria-hidden="true"></span>
             <span ng-if="teamShown != $index" class="fa fa-chevron-right main-color" aria-hidden="true"></span>
@@ -61,7 +61,7 @@
       
       <li  ng-if="teamShown == $parent.$index" ng-repeat-start="week in team.weeks" ng-click="weekRowClicked($index)" class="listTableRow hideable">
         
-        <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing">
+        <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
           <li class="listTableCell"></li>
           <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
             <span class="white" >{{week.weekNumber}}</span>
