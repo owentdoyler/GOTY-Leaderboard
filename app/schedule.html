@@ -24,15 +24,15 @@
       <li class="listTableRow">
         <ul class="listTableCellContainer tableRowBorder" id="headingRow1">
           <li class="listTableCell" id="L-logo"><img src="assets/L-xs.png"></li>
-          <li class="listTableCell main-color" id="title"><h1 style="text-align: center; ;" id="title-text">Golfer of the Year</h1></li>
+          <li class="listTableCell main-color" id="title"><h1 style="text-align: center; ;" id="title-text">Schedule</h1></li>
           <li class="listTableCell" id="L-logo"><img src="assets/L-xs.png"></li>
         </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow2">
           <li class="listTableCell" id="label-spacer">
               <span id="next-event-container">
-                Your golfer of the year score is based on your best 5 scores from the major ecompetitions played throughout the year.<br/>
                  Your score for each competition is based on the difference between your socore and the CSS of the course on the competition day.<br/>
-                 <a href="">See Full Golfer Of The Year schedule</a>
+                 Click on a competition below to see the full results.<br>
+                 <div class="topLink"><a href="index.html">See The Golfer Of The Year Leaderboard</a></div>
               </span>
           </li>  
         </ul>
@@ -40,7 +40,7 @@
           <li class="listTableCell" id="label-spacer">
           </li>
           <li class="listTableCell main-color" id="score">Date</li>
-          <li class="listTableCell main-color" id="played">Winner</li>
+          <li class="listTableCell main-color" id="winner">Winner</li>
         </ul>
       </li>
       
@@ -55,29 +55,29 @@
             <span id="teamName">{{comp.compName}}</span>
           </li>
           <li id="score" class="listTableCell white score-cell">{{comp.compDate}}</li>
-          <li id="played" class="listTableCell white">{{comp.compWinner}}</li>
+          <li id="winner" class="listTableCell white">{{comp.compWinner}}</li>
         </ul>
       </li>
       
       <li  ng-if="teamShown == $parent.$index" ng-repeat-start="result in comp.results" ng-click="weekRowClicked($index)" class="listTableRow hideable">
         <ul ng-if="$index == 0" class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
             <li class="listTableCell"></li>
-            <li class="listTableCell listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-            <li class="listTableCell listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">{{comp.css}}</li>
-            <li class="listTableCell listTableCell weekright tableRowBorder secondLayer secondLayerRight"ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
+            <li class="listTableCell"></li>
+            <li class="listTableCell listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultCss" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="main-color">CSS: </span><span class="white">{{comp.css}}</span></li>
+            <li class="listTableCell"></li>
             <li class="listTableCell"></li>
         </ul>
         <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
           <li class="listTableCell"></li>
-          <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
-            <span class="white" >{{result.position}}</span>
+          <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="resultPosition" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
+            <span class="main-color" >{{result.position}}</span>
           </li>
-          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">{{result.name}}</li>
+          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultPlayer" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="white">{{result.name}}</span></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">{{result.score}}</li>
-          <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">
+          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultScore" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="white">{{result.score}}</span></li>
+          <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" id="resultScore" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">
             <span class="white">{{result.gotyScore}}</span>
           </li>
           <li class="listTableCell"></li>

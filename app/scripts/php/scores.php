@@ -15,6 +15,10 @@
 		}
 	}
 	
+	$players1 = array();
+	$players2 = array();
+	$players3 = array();
+	$players4 = array();
 	$playersList = array();
 	
 	foreach ($players as $playerName){
@@ -31,7 +35,7 @@
 		//calculate the players over all score selecting the best
 		//5 when the number of scores a player has is greater than 5
 		$overallScore = 0;
-		if(count($scoreList > 5)){
+		if(count($scoreList) > 5){
 			$tmp = array_slice($scoreList, 0, 5);
 			$overallScore = calculateScore($tmp);
 		}
@@ -44,14 +48,65 @@
 		$player->name = $playerName;
 		$player->setScores($scoreList);
 		$player->overallScore = $overallScore;
-		array_push($playersList, $player);
+		
+		$count = count($scoreList);
+		
+		switch ($count) {
+			case 1:
+				array_push($players1, $player);
+				break;
+			case 2:
+				array_push($players2, $player);
+				break;
+			case 3:
+				array_push($players3, $player);
+				break;
+			case 4:
+				array_push($players4, $player);
+				break;	
+			default:
+				array_push($playersList, $player);
+		}
+		
+		
 	}
 	
+	usort($players1, function($a, $b){
+		if($a->overallScore < $b->overallScore) return -1;
+		elseif ($a->overallScore > $b->overallScore) return 1;
+		else return 0;
+	});
+	
+	usort($players2, function($a, $b){
+		if($a->overallScore < $b->overallScore) return -1;
+		elseif ($a->overallScore > $b->overallScore) return 1;
+		else return 0;
+	});
+
+	usort($players3, function($a, $b){
+		if($a->overallScore < $b->overallScore) return -1;
+		elseif ($a->overallScore > $b->overallScore) return 1;
+		else return 0;
+	});
+
+	usort($players4, function($a, $b){
+		if($a->overallScore < $b->overallScore) return -1;
+		elseif ($a->overallScore > $b->overallScore) return 1;
+		else return 0;
+	});
+
 	usort($playersList, function($a, $b){
 		if($a->overallScore < $b->overallScore) return -1;
 		elseif ($a->overallScore > $b->overallScore) return 1;
 		else return 0;
 	});
+	
+	$playersList = array_merge($playersList, $players4);
+	$playersList = array_merge($playersList, $players3);
+	$playersList = array_merge($playersList, $players2);
+	$playersList = array_merge($playersList, $players1);
+	
+	
 	
 	$playersJson = array();
 	$firstElement = '"name"';
