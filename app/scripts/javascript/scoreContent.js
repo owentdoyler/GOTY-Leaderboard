@@ -12,8 +12,18 @@ app.controller("MyCtrl", function($scope, $http){
   $scope.test = "world";
     $scope.weekShown = -1;
     $scope.teamShown = -1;
-    $scope.showTable = false;
+
+    if (window.matchMedia('screen and (max-width: 500px)').matches) {
+      $scope.showTable = false;  
+    }
+    else{
+      $scope.showTable = true;
+    }
   
+    $scope.showDescription = function(){
+      $scope.showTable = !($scope.showTable);
+    }
+
     $scope.setWeekShown = function(weekIndex){
       $scope.weekShown = weekIndex;
     }

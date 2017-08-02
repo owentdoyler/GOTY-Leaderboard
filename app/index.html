@@ -18,8 +18,10 @@
   <script src="scripts/javascript/image-switcher.js"></script>
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
+<img src="" id="bg" alt="">
+<img src="" id="bg-next" alt="">
 <body ng-app="app" ng-controller="MyCtrl">
-    
+
     <ul class="listTable">
       <li class="listTableRow">
         <ul class="listTableCellContainer tableRowBorder" id="headingRow1">
@@ -29,11 +31,12 @@
         </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow2">
           <li class="listTableCell" id="label-spacer">
-              <span id="next-event-container">
+              <span id="next-event-container" class="hideable" ng-show="showTable">
                     Your golfer of the year score is based on your best 5 scores from the major ecompetitions played throughout the year.<br/>
                     Your score for each competition is based on the difference between your socore and the CSS of the course on the competition day.<br/>
-                    <div class="topLink"><a href="schedule.html">See Full Golfer Of The Year schedule</a></div>
               </span>
+              <a ng-click="showDescription()" class="main-color" id="showInstructions">Read the Rules</a>    
+              <div class="topLink"><a href="schedule.html">See Full Golfer Of The Year schedule</a></div>    
           </li>  
         </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow3">
@@ -52,10 +55,10 @@
 		      </li>
 		      <li  class="listTableCell" id="number">{{$index + 1}}</li>
 		      <li class="listTableCell" id="team-name-cell">	
-            <span id="teamName">{{team.name}}</span>
+            <span id="teamName" ng-class="(team.weeks.length > 4)? 'white' : ''">{{team.name}}</span>
           </li>
-          <li id="score" class="listTableCell white score-cell redBackground">{{team.score}}</li>
-          <li id="played" class="listTableCell white">{{team.weeks.length}}</li>
+          <li id="score" class="listTableCell score-cell" ng-class="(team.weeks.length > 4)? 'white redBackground' : 'greyBackground'">{{team.score > 0? ("+" + team.score) : team.score}}</li>
+          <li id="played" class="listTableCell" ng-class="(team.weeks.length > 4)? 'white' : ''">{{team.weeks.length}}</li>
         </ul>
       </li>
       
@@ -64,7 +67,7 @@
         <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
           <li class="listTableCell"></li>
           <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
-            <span class="white" id="compName">{{week.weekNumber}}</span>
+            <span ng-class="($index > 4)? '' : 'white'" id="compName">{{week.weekNumber}}</span>
           </li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
@@ -72,7 +75,7 @@
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}" id="compScore">
-            <span class="white">{{week.score}}</span>
+            <span ng-class="($index > 4)? '' : 'white'">{{week.score}}</span>
           </li>
           <li class="listTableCell"></li>
         </ul>
