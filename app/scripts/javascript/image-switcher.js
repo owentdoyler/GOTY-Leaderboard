@@ -27,8 +27,6 @@
 // }
 // backgroundSequence();
 
-window.onload = function () {
-    var i = 0;
     var images = [
     "1.jpg",
     "2.jpg",
@@ -36,8 +34,17 @@ window.onload = function () {
     "4.jpg",
     "5.jpg",
 	"6.jpg"];
-	
+
 	var base = "assets/backgrounds/";
+
+	images.forEach(function(img){
+    	new Image().src = base + img; 
+    	// caches images, avoiding white flash between background replacements
+	});
+
+
+window.onload = function () {
+    var i = 0;
 	var secs = 10;	
 
     $('#bg').attr("src", base + images[i]);

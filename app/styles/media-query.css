@@ -32,4 +32,12 @@
     #title-text{
 	    font-size: 40px;
     }
+
+    #winner{
+	    flex: 3.5;
+    }
+
+    #weekName{
+	    flex: 12;
+    }
 }
