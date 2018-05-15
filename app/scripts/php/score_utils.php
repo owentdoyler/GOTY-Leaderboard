@@ -1,5 +1,28 @@
 <?php
     require("score.php");
+    require("point_score.php");
+
+
+
+
+    function group_points_scores($scoreQueryResponse){
+        $scoreList = array();
+        if($scoreQueryResponse){
+            while($scoreData = mysqli_fetch_array($scoreQueryResponse)){
+                $score = new point_score();
+                $score->position = $scoreData['position'];
+                $score->playerName = $scoreData['playerName'];
+                $score->competitionNumber = $scoreData['compNum'];
+                $score->competitionName = $scoreData['compName'];
+                $score->originalNetScore = $scoreData['score'];
+                $score->gotyPointScore = $score->pointsScore();
+                array_push($scoreList, $score);
+            }
+        }
+        return $scoreList;
+    }
+
+
     function group_scores($scoreQueryResponse){
         // $query = getPlayerScoreQuery($playerName);
         // $response = @mysqli_query($database, $query);

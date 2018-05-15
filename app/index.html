@@ -63,10 +63,10 @@
         </ul>
       </li>
       
-      <li  ng-if="teamShown == $parent.$index" ng-repeat-start="week in team.weeks" ng-click="weekRowClicked($index)" class="listTableRow hideable">
+      <li  ng-if="teamShown == $parent.$index" ng-repeat-start="week in team.weeks" ng-click="weekRowClicked($index)" class="listTableRow hideable row2">
         
-        <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
-          <li class="listTableCell"></li>
+        <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont secondRow">
+          <li class="listTableCell blank"></li>
           <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
             <span ng-class="($index > 4)? '' : 'white'" id="compName">{{week.weekNumber}}</span>
           </li>
@@ -78,7 +78,7 @@
           <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}" id="compScore">
             <span ng-class="($index > 4)? '' : 'white'">{{week.score}}</span>
           </li>
-          <li class="listTableCell"></li>
+          <li class="listTableCell blank"></li>
         </ul>
         
       </li>

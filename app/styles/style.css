@@ -12,6 +12,14 @@ html{
 	background-color: #002600;
 }
 
+ .secondRow:hover .secondLayer{
+	border-color: red;
+}
+
+.blank{
+	pointer-events: none;
+}
+
 body{
   /*background: url("../assets/7.jpg");*/
   background-repeat: no-repeat;
