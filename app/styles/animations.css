@@ -6,6 +6,12 @@
   max-height: 0px;
 }
 
+.table.hideable.ng-enter, .description.hideable.ng-enter {
+  transition:2s linear all;
+  max-height: 0px;
+}
+
+
 .hideable.ng-enter.ng-enter-active {
   max-height: 500px;
 }
@@ -13,6 +19,11 @@
 .hideable.ng-leave {
   transition:0.5s linear all;
   max-height: 30px;
+}
+
+.table.hideable.ng-leave, .description.hideable.ng-leave {
+  transition:0.5s linear all;
+  max-height: 150px;
 }
 
 /* The finishing CSS styles for the enter animation */

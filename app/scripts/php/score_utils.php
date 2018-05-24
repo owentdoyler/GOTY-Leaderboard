@@ -13,9 +13,10 @@
                 $score->position = $scoreData['position'];
                 $score->playerName = $scoreData['playerName'];
                 $score->competitionNumber = $scoreData['compNum'];
+                $score->competitionCode = $scoreData['competitionCode'];
                 $score->competitionName = $scoreData['compName'];
-                $score->originalNetScore = $scoreData['score'];
-                $score->gotyPointScore = $score->pointsScore();
+                $score->originalNetScore = $scoreData['score']; 
+                $score->gotyPointsScore = $score->pointsScore();
                 array_push($scoreList, $score);
             }
         }

@@ -27,38 +27,23 @@
       <li class="listTableRow">
         <ul class="listTableCellContainer tableRowBorder" id="headingRow1">
           <li class="listTableCell" id="L-logo"><img src="assets/L-xs.png"></li>
-          <li class="listTableCell main-color" id="title"><h1 style="text-align: center; ;" id="title-text">Golfer of the Year 2018</h1></li>
+          <li class="listTableCell main-color" id="title"><h1 style="text-align: center; ;" id="title-text">Golfer of the Year</h1></li>
           <li class="listTableCell" id="L-logo"><img src="assets/L-xs.png"></li>
         </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow2">
           <li class="listTableCell" id="label-spacer">
-              <div id="next-event-container" class="description hideable" ng-if="showDescription">
-                    Your golfer of the year score is based on your best 7 points scores from the 9 major competitions played throughout the year.<br/>
-                    Your points score for each competition is based on the position you finish in the event. The points breakdown for each competetion can be seen below.<br/>
-              </div>
-              <a ng-click="showDescriptionFn()" class="main-color" id="showInstructions"><span  ng-show="!showDescription">Read</span><span ng-show="showDescription">Hide</span> the Rules</a>   
-              <div class="table hideable" ng-if="showTable">
-                <table class="points-table">
-                  <tr>
-                    <td class="points-table-data"></td>
-                    <td ng-repeat="place in positions" class="points-table-data points">{{place}}</td>
-                  </tr>
-                  <tr ng-repeat="comp in competitionPoints">
-                    <td class="points-table-data">{{comp.competition}}</td>
-                    <td ng-repeat="points in comp.points track by $index" class="points-table-data points">{{points}}</td>
-                  </tr>
-                </table>
-              </div>
-              <div class="links">
-                  <div class="topLink float-left"><a href="" ng-click="showTableFn()">Click here to view the points breakdown</a></div>    
-                  <div class="topLink float-right"><a href="schedule.html">Click here for the golfer of the year schedule</a></div> 
-              </div>   
-            </li>  
+              <span id="next-event-container" class="hideable" ng-show="showTable">
+                    Your golfer of the year score is based on your best 5 scores from the major competitions played throughout the year.<br/>
+                    Your score for each competition is based on the difference between your score and the CSS of the course on the competition day.<br/>
+              </span>
+              <a ng-click="showDescription()" class="main-color" id="showInstructions">Read the Rules</a>    
+              <div class="topLink"><a href="schedule.html">See Full Golfer Of The Year schedule</a></div>    
+          </li>  
         </ul>
         <ul class="listTableCellContainer tableRowBorder" id="headingRow3">
           <li class="listTableCell" id="label-spacer">
           </li>
-          <li class="listTableCell main-color" id="score">Points</li>
+          <li class="listTableCell main-color" id="score">Score</li>
           <li class="listTableCell main-color" id="played">Played</li>
         </ul>
       </li>
@@ -71,10 +56,10 @@
 		      </li>
 		      <li  class="listTableCell" id="number">{{$index + 1}}</li>
 		      <li class="listTableCell" id="team-name-cell">	
-            <span id="teamName" class="white">{{team.name}}</span>
+            <span id="teamName" ng-class="(team.weeks.length > 4)? 'white' : ''">{{team.name}}</span>
           </li>
-          <li id="score" class="listTableCell score-cell redBackground white">{{team.score}}</li>
-          <li id="played" class="listTableCell white">{{team.weeks.length}}</li>
+          <li id="score" class="listTableCell score-cell" ng-class="(team.weeks.length > 4)? 'white redBackground' : 'greyBackground'">{{team.score > 0? ("+" + team.score) : team.score}}</li>
+          <li id="played" class="listTableCell" ng-class="(team.weeks.length > 4)? 'white' : ''">{{team.weeks.length}}</li>
         </ul>
       </li>
       
@@ -83,7 +68,7 @@
         <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont secondRow">
           <li class="listTableCell blank"></li>
           <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
-            <span ng-class="($index > 6)? '' : 'white'" id="compName">{{week.weekNumber}}</span>
+            <span ng-class="($index > 4)? '' : 'white'" id="compName">{{week.weekNumber}}</span>
           </li>
           <!-- <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
@@ -91,7 +76,7 @@
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li> -->
           <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}" id="compScore">
-            <span ng-class="($index > 6)? '' : 'white'">{{week.score}}</span>
+            <span ng-class="($index > 4)? '' : 'white'">{{week.score}}</span>
           </li>
           <li class="listTableCell blank"></li>
         </ul>

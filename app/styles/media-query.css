@@ -3,6 +3,16 @@
         width: 100%;
     }
 
+    
+    .points-table{
+	    font-size: 2vw;
+    }
+    
+    .points-table .points-table-data{
+        padding: 2px;
+	    font-size: 2.7vw;
+    }
+
     #played{
         flex: 3.5;
     }
