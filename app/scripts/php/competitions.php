@@ -34,7 +34,11 @@
 			$comp = new Competition();
 			$comp->compNum = $competitionNumber;
 			$comp->compName = $data["compName"];
-			$comp->date =  convertDate($data["compDate"], "d/m/y"); 
+			if($data["compName"] == "March Medal (rescheduled)"){
+				$comp->date = "TBC";	
+			} else {
+				$comp->date =  convertDate($data["compDate"], "d/m/y");
+			} 
 			$comp->setResults($scoreList);
 			array_push($competitionsList, $comp);
 		}

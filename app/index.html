@@ -79,17 +79,22 @@
       </li>
       
       <li  ng-if="teamShown == $parent.$index" ng-repeat-start="week in team.weeks" ng-click="weekRowClicked($index)" class="listTableRow hideable row2">
-        
+        <ul ng-if="$index == 0" class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont secondRow">
+          <li class="listTableCell blank"></li>
+          <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
+            <span id="compName" class="main-color">Competition Name</span>
+          </li>
+          <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}" id="compScore">
+            <span class="main-color">Points</span>
+          </li>
+          <li class="listTableCell blank"></li>
+        </ul>
+
         <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont secondRow">
           <li class="listTableCell blank"></li>
           <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="weekName" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
             <span ng-class="($index > 6)? '' : 'white'" id="compName">{{week.weekNumber}}</span>
           </li>
-          <!-- <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li>
-          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"></li> -->
           <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}" id="compScore">
             <span ng-class="($index > 6)? '' : 'white'">{{week.score}}</span>
           </li>
