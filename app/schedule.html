@@ -63,12 +63,17 @@
       </li>
       
       <li  ng-if="teamShown == $parent.$index" ng-repeat-start="result in comp.results" ng-click="weekRowClicked($index)" class="listTableRow hideable">
-        <ul ng-if="$index == 0" class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
-            <li class="listTableCell"></li>
-            <li class="listTableCell"></li>
-            <li class="listTableCell listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultCss" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="main-color">CSS: </span><span class="white">{{comp.css}}</span></li>
-            <li class="listTableCell"></li>
-            <li class="listTableCell"></li>
+        <ul  ng-if="$index == 0" class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
+          <li class="listTableCell"></li>
+          <li class="listTableCell weekleft tableRowBorder secondLayer secondLayerLeft" id="resultPosition" ng-class="{'oddSecondLayer': $index %2 != 0, 'evenSecondLayer': $index %2 == 0}">
+            <span class="main-color" ></span>
+          </li>
+          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultPlayer" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="main-color">Name</span></li>
+          <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultScore" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="main-color">Score</span></li>
+          <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" id="resultScore" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">
+            <span class="main-color">Points</span>
+          </li>
+          <li class="listTableCell"></li>
         </ul>
         <ul class="listTableCellContainer noBorder tableRowBorder secondRowSpacing tableRowSpacing tableFont">
           <li class="listTableCell"></li>
@@ -78,7 +83,7 @@
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultPlayer" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="white">{{result.name}}</span></li>
           <li class="listTableCell weekmiddle tableRowBorder secondLayer secondLayerMiddle" id="resultScore" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}"><span class="white">{{result.score}}</span></li>
           <li class="listTableCell weekright tableRowBorder secondLayer secondLayerRight" id="resultScore" ng-class="{'oddSecondLayer': !even($index), 'evenSecondLayer': even($index)}">
-            <span class="white">{{result.gotyScore}}</span>
+            <span class="white">{{result.gotyPointsScore}}</span>
           </li>
           <li class="listTableCell"></li>
         </ul>

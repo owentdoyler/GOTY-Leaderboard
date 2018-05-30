@@ -19,7 +19,7 @@
 	foreach($competitions as $competitionNumber){
 		$query = getScoresByCompetitionQuery($competitionNumber);
 		$response = @mysqli_query($database, $query);
-		$scoreList = group_scores($response);
+		$scoreList = group_points_scores($response);
 		//sort scores array so that the top five scores are first
 
 		usort($scoreList, function($a, $b){
@@ -34,7 +34,7 @@
 			$comp = new Competition();
 			$comp->compNum = $competitionNumber;
 			$comp->compName = $data["compName"];
-			$comp->date = $data["compDate"];
+			$comp->date =  convertDate($data["compDate"], "d/m/y"); 
 			$comp->setResults($scoreList);
 			array_push($competitionsList, $comp);
 		}
@@ -54,7 +54,7 @@
 	$firstSubElement = '"position"';
 	$secondSubElement = '"name"';
 	$thirdSubElement = '"score"';
-	$fourthSubElement = '"gotyScore"';
+	$fourthSubElement = '"gotyPointsScore"';
 
 	foreach($competitionsList as $competition){
 		$winner = " - ";
@@ -76,7 +76,7 @@
 				$compJson .= '{' . $firstSubElement .':"' . $score->position . '",';
 				$compJson .=  $secondSubElement .':"' . $score->playerName . '",';
 				$compJson .=  $thirdSubElement .':"' . $score->originalNetScore . '",';
-				$compJson .=  $fourthSubElement .':"' . $score->gotyScore . '"},';
+				$compJson .=  $fourthSubElement .':"' . $score->gotyPointsScore . '"},';
 			}
 			$compJson = substr($compJson, 0, -1);
 		}
@@ -91,5 +91,10 @@
 	$json .= ']';
 
 	echo $json;
+
+	function convertDate($sqlDate, $format){
+		$date = strtotime($sqlDate);
+		return date($format, $date);
+	}
 
 ?>
